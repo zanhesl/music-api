@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import GeniusSearch from '../Genius/Genius';
-// import VoiceSearch from '../Voice/Voice';
+import VoiceSearch from '../Voice/Voice';
 import YouTube from '../YouTube/YouTube';
+
+import './App.scss';
 
 class App extends Component {
   constructor(props) {
@@ -16,13 +18,8 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.props);
-
     return (
       <div className="main-app">
-        <GeniusSearch />
-        {/* <VoiceSearch /> */}
-        <YouTube />
         <form
           className="form form_search"
           onSubmit={event => {
@@ -40,59 +37,64 @@ class App extends Component {
               () => this.props.onInput(this.state.value)
             }
           >
-            Search
+            <p className="visually-hidden">Search</p>
           </button>
         </form>
         {// eslint-disable-next-line react/prop-types
         this.props.song ? (
           <div className="song-info">
-            <img
-              src={
-                // eslint-disable-next-line react/prop-types
-                this.props.image
-              }
-              className="img song-info__img"
-            />
-            <div className="song-info__description">
-              <p className="song-name">
-                Song:{' '}
-                {
-                  // eslint-disable-next-line react/prop-types
-                  this.props.song
-                }
-              </p>
-              <p className="artist-info">
-                Artist:{' '}
-                {
-                  // eslint-disable-next-line react/prop-types
-                  this.props.artist
-                }
-              </p>
-              <p className="album-info">
-                Album:{' '}
-                {
-                  // eslint-disable-next-line react/prop-types
-                  this.props.album
-                }
-              </p>
-              <div className="listening-link">
-                Link:{' '}
-                <a
-                  href={
-                    // eslint-disable-next-line react/prop-types
-                    this.props.listeningLink
-                  }
-                  className="listening-link__link link"
-                >
+            <div className="info-wrapper">
+              <div className="song-info__description">
+                <p className="song-name">
+                  <b>Song:</b>{' '}
                   {
                     // eslint-disable-next-line react/prop-types
-                    this.props.listeningLink
+                    this.props.song
                   }
-                </a>
+                </p>
+                <p className="artist-info">
+                  <b>Artist:</b>{' '}
+                  {
+                    // eslint-disable-next-line react/prop-types
+                    this.props.artist
+                  }
+                </p>
+                <p className="album-info">
+                  <b>Album:</b>{' '}
+                  {
+                    // eslint-disable-next-line react/prop-types
+                    this.props.album
+                  }
+                </p>
               </div>
+              <img
+                src={
+                  // eslint-disable-next-line react/prop-types
+                  this.props.image
+                }
+                className="img song-info__img"
+              />
+            </div>
+            <div className="listening-link">
+              <b>Link:</b>{' '}
+              <a
+                href={
+                  // eslint-disable-next-line react/prop-types
+                  this.props.listeningLink
+                }
+                className="listening-link__link link"
+              >
+                {
+                  // eslint-disable-next-line react/prop-types
+                  this.props.listeningLink
+                }
+              </a>
             </div>
           </div>
         ) : null}
+        <GeniusSearch />
+        <YouTube />
+        <VoiceSearch />
       </div>
     );
   }

@@ -9,3 +9,15 @@
 
   @return $pixels / $context * 1rem;
 }
+
+@mixin zeroPadding {
+  padding: 0;
+  margin: 0;
+}
+
+@mixin setFlex($just, $direction, $content) {
+  display: flex;
+  justify-content: $just;
+  flex-direction: $direction;
+  align-items: $content;
+}

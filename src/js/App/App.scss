@@ -1,0 +1,81 @@
+@import '../../scss/main.scss';
+
+body {
+    background-image: url('../../img/bg-009.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.main-app {
+    position: relative;
+    @include setFlex(center, column, center);
+    min-height: 100vh;
+
+    padding-top: 50px;
+}
+
+.form_search {
+    position: relative;
+}
+
+.input_genius {
+    border-radius: $standart-radius;
+    background-color: $semi-transparent;
+    min-width: 500px;
+    min-height: 50px;
+    width: 50%;
+
+    padding: 0 60px 0 20px;
+
+    font-size: 20px;
+}
+
+.button_genius {
+    width: 40px;
+    height: 40px;
+
+    border-radius: $radius-circle;
+
+    background-image: url(../../img/music.png);
+    background-size: 25px;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    background-color: darken($semi-transparent, 0.2);
+    transition: background-color 0.4s ease-in-out;
+
+    &:hover {
+        background-color: white;
+    }
+
+    position: absolute;
+    right: 20px;
+    top: 5px;
+}
+
+.song-info__img {
+    width: 30%;
+    box-shadow: 1px 1px 9px 0 white;
+}
+
+.song-info {
+    @include setFlex(space-around, column, center);
+    max-width: 580px;
+
+    margin-top: 20px;
+}
+
+.info-wrapper {
+    @include setFlex(space-around, row, center);
+}
+
+.listening-link {
+    margin: 20px 0;
+}
+
+.main-app__voice {
+    margin-top: 20px;
+}
