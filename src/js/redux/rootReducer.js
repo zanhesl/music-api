@@ -1,21 +1,28 @@
 const initialState = {
   search: null,
   song: null,
-  author: null,
+  artist: null,
   album: null,
+  image: '',
+  listeningLink: '',
 };
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case 'CHANGE_LOC':
+    case 'SEARCH':
       return {
         ...state,
-        city: action.payload.city,
-        country: action.payload.country,
-        location: action.payload.location,
+        search: action.payload,
       };
-    case 'CHANGE_UNITS':
-      return { ...state, units: action.payload };
+    case 'SONG_FIND':
+      return {
+        ...state,
+        song: action.payload.song,
+        artist: action.payload.artist,
+        album: action.payload.album,
+        image: action.payload.image,
+        listeningLink: action.payload.listeningLink,
+      };
     default:
       return state;
   }
