@@ -12,3 +12,7 @@ All the information would be presented on the page: album cover, youtube video(i
 `npm run dev` - to run build on dev server
 
 `npm run build` - to build a prodution version of project in separate folder
+
+## Link
+
+Online version - https://zanhesl0music-api.netlify.com
