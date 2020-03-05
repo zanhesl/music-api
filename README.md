@@ -8,5 +8,7 @@ All the information would be presented on the page: album cover, youtube video(i
 
 ## Installation process
 `npm install` - to install all the dependencies
+
 `npm run dev` - to run build on dev server
+
 `npm run build` - to build a prodution version of project in separate folder
