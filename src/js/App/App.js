@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { string, func } from 'prop-types';
+
 import GeniusSearch from '../Genius/Genius';
 import VoiceSearch from '../Voice/Voice';
 import YouTube from '../YouTube/YouTube';
@@ -24,70 +26,34 @@ class App extends Component {
           className="form form_search"
           onSubmit={event => {
             event.preventDefault();
-            // eslint-disable-next-line react/prop-types
             this.props.onInput(this.state.value);
           }}
         >
           <input type="text" className="input input_genius" value={this.state.value} onChange={this.handleChange} />
-          <button
-            type="button"
-            className="button button_genius"
-            onClick={
-              // eslint-disable-next-line react/prop-types
-              () => this.props.onInput(this.state.value)
-            }
-          >
+          <button type="button" className="button button_genius" onClick={() => this.props.onInput(this.state.value)}>
             <p className="visually-hidden">Search</p>
           </button>
         </form>
-        {// eslint-disable-next-line react/prop-types
-        this.props.song ? (
+        {this.props.song ? (
           <div className="song-info">
             <div className="info-wrapper">
               <div className="song-info__description">
                 <p className="song-name">
-                  <b>Song:</b>{' '}
-                  {
-                    // eslint-disable-next-line react/prop-types
-                    this.props.song
-                  }
+                  <b>Song:</b> {this.props.song}
                 </p>
                 <p className="artist-info">
-                  <b>Artist:</b>{' '}
-                  {
-                    // eslint-disable-next-line react/prop-types
-                    this.props.artist
-                  }
+                  <b>Artist:</b> {this.props.artist}
                 </p>
                 <p className="album-info">
-                  <b>Album:</b>{' '}
-                  {
-                    // eslint-disable-next-line react/prop-types
-                    this.props.album
-                  }
+                  <b>Album:</b> {this.props.album}
                 </p>
               </div>
-              <img
-                src={
-                  // eslint-disable-next-line react/prop-types
-                  this.props.image
-                }
-                className="img song-info__img"
-              />
+              <img src={this.props.image} className="img song-info__img" />
             </div>
             <div className="listening-link">
               <b>Link:</b>{' '}
-              <a
-                href={
-                  // eslint-disable-next-line react/prop-types
-                  this.props.listeningLink
-                }
-                className="listening-link__link link"
-              >
-                {
-                  // eslint-disable-next-line react/prop-types
-                  this.props.listeningLink
-                }
+              <a href={this.props.listeningLink} className="listening-link__link link">
+                {this.props.listeningLink}
               </a>
             </div>
           </div>
@@ -116,5 +82,15 @@ function mapDispatchToProps(dispatch) {
     onInput: query => dispatch({ type: 'SEARCH', payload: query }),
   };
 }
+
+App.propTypes = {
+  onInput: func,
+  search: string,
+  song: string,
+  artist: string,
+  album: string,
+  image: string,
+  listeningLink: string,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

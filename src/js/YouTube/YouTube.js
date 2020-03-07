@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { string } from 'prop-types';
 
 const API_TOKEN = 'AIzaSyC7eIwgi27c4PXxnjM9Ort2RsH2wkWbSr4';
 
@@ -10,26 +11,15 @@ class YouTube extends Component {
   }
 
   componentDidUpdate(previousProps) {
-    // eslint-disable-next-line react/prop-types
     if (previousProps.song + previousProps.artist === this.props.song + this.props.artist) return false;
-    // const corsUrl = 'https://cors-anywhere.herokuapp.com/';
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${
-      // eslint-disable-next-line react/prop-types
-      this.props.song
-    }%20${
-      // eslint-disable-next-line react/prop-types
-      this.props.artist
-    }
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${this.props.song}%20${this.props.artist}
     }&key=${API_TOKEN}`;
     fetch(url)
       .then(data => data.json())
       .then(json => {
         this.setState({ video: json.items[0].id.videoId });
       })
-      .catch(() =>
-        // eslint-disable-next-line react/prop-types
-        this.setState({ video: null }),
-      );
+      .catch(() => this.setState({ video: null }));
     return true;
   }
 
@@ -64,5 +54,11 @@ function mapDispatchToProps(dispatch) {
     onChangeUnits: units => dispatch({ type: 'CHANGE_UNITS', payload: units }),
   };
 }
+
+YouTube.propTypes = {
+  search: string,
+  song: string,
+  artist: string,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(YouTube);
